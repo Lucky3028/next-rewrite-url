@@ -6,11 +6,15 @@
   "type": "module",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "next-override-url": "./bin/next-override-url.mjs"
+  },
   "engines": {
     "node": ">=14.16"
   },
   "scripts": {
-    "start": "ts-node --esm ./src/index.ts",
+    "dev": "run-s build \"start {@}\" --",
+    "start": "./bin/next-override-url.mjs",
     "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "lint": "run-s es format",
     "lint:fix": "run-s es:fix format:fix",
