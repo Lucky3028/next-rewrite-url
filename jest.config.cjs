@@ -2,6 +2,7 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
+  coverageReporters: [['text', { file: 'result-jest.txt' }]],
   // パスエイリアスの設定
   moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/$1' },
   extensionsToTreatAsEsm: ['.ts'],
@@ -9,8 +10,6 @@ module.exports = {
     '^(\\.{1,2}/.*)\\.js$': '$1',
   },
   transform: {
-    // '^.+\\.[tj]sx?$' to process js/ts with `ts-jest`
-    // '^.+\\.m?[tj]sx?$' to process js/ts/mjs/mts with `ts-jest`
     '^.+\\.ts$': [
       'ts-jest',
       {
