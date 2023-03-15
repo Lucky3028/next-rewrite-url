@@ -1,0 +1,14 @@
+.github/
+.husky/
+src/
+
+.editorconfig
+.eslintignore
+.eslintrc
+.prettierrc
+CONTRIBUTING.md
+jest.config.cjs
+tsconfig.json
+tsconfig.**.json
+yarn.lock
+dist/tsconfig.build.tsbuildinfo
