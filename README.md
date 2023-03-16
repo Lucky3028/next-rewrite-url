@@ -1,6 +1,9 @@
 # next-rewrite-url
 
-This library will output a JSON file containing rewrites in next.config.js of Next.js from TypeScript file.
+This library will output below files
+
+- a JSON file (`.json`) containing rewrites in next.config.js of Next.js from TypeScript file
+- a TypeScript file (`.ts`) to read more easily
 
 ## Development
 
