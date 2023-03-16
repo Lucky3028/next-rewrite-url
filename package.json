@@ -61,7 +61,8 @@
     "typesync": "^0.10.0"
   },
   "dependencies": {
-    "yargs": "^17.7.1"
+    "yargs": "^17.7.1",
+    "zod": "^3.21.4"
   },
   "volta": {
     "node": "18.15.0",
