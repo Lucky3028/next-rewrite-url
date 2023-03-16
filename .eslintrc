@@ -18,6 +18,8 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    // NOTE: ログの出力はするべきなので、ESLintに警告させない
+    "no-console": "off",
     "lines-between-class-members": [
       "error",
       "always",
