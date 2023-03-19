@@ -12,6 +12,13 @@
   "engines": {
     "node": ">=14.16"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lucky3028/next-rewrite-url.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "dev": "run-s build \"start {@}\" --",
     "start": "./bin/next-override-url.mjs",
