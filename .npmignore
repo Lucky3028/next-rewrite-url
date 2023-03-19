@@ -12,3 +12,4 @@ tsconfig.json
 tsconfig.**.json
 yarn.lock
 dist/tsconfig.build.tsbuildinfo
+renovate.json
