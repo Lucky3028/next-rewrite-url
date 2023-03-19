@@ -31,6 +31,9 @@
     "*.ts": [
       "eslint --fix",
       "prettier --write"
+    ],
+    "bin/*.mjs": [
+      "prettier --write"
     ]
   },
   "devDependencies": {
