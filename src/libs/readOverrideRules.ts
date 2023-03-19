@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises';
+import fs from 'fs/promises';
 import { z } from 'zod';
 
 import { OverrideRules } from './index.js';
@@ -8,6 +8,8 @@ const overrideRulesSchema: z.ZodSchema<OverrideRules> = z.lazy(() =>
 );
 
 export const readJsonAsOverrideRules = async (filePath: string) =>
-  readFile(filePath, { encoding: 'utf-8' }).then(async (contents) =>
-    overrideRulesSchema.parse(JSON.parse(contents)),
-  );
+  fs
+    .readFile(filePath)
+    .then(async (buffer) =>
+      overrideRulesSchema.parse(JSON.parse(buffer.toString())),
+    );

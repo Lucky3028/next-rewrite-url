@@ -1,6 +1,6 @@
-import { writeFile } from 'fs/promises';
+import fs from 'fs/promises';
 
-const options: Parameters<typeof writeFile>['2'] = { encoding: 'utf-8' };
+const options: Parameters<typeof fs.writeFile>['2'] = { encoding: 'utf-8' };
 
 export const writeOverrideRulesAsTs = async (
   filePath: string,
@@ -12,10 +12,10 @@ export const writeOverrideRulesAsTs = async (
   const defaultExportContents = `const overrideRules = ${json};\n\nexport default overrideRules;`;
   const contents = isNamedExport ? namedExportContents : defaultExportContents;
 
-  return writeFile(filePath, contents, options);
+  return fs.writeFile(filePath, contents, options);
 };
 
 export const writeOverrideRulesAsJson = async (
   filePath: string,
   data: unknown,
-) => writeFile(filePath, JSON.stringify(data), options);
+) => fs.writeFile(filePath, JSON.stringify(data), options);
