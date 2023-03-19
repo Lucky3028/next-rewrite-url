@@ -13,4 +13,4 @@ const parseJsonAsOverrideRules = (data: string) =>
 export const readJsonAsOverrideRules = async (filePath: string) =>
   fs
     .readFile(filePath)
-    .then((buffer) => parseJsonAsOverrideRules(buffer.toString()));
+    .then(async (buffer) => parseJsonAsOverrideRules(buffer.toString()));
