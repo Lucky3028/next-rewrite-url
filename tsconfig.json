@@ -22,5 +22,14 @@
     "paths": {
       "@/*": ["src/*"]
     }
-  }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.mjs"
+  ],
+  "exclude": [
+    "node_modules/**/*.ts",
+    "vite.config.ts",
+    "bin/next-override-url.mjs"
+  ]
 }
