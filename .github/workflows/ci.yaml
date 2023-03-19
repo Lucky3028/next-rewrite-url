@@ -35,19 +35,5 @@ jobs:
           submodules: 'true'
       - name: Setup Node.js with Volta
         uses: ./.github/actions/setup-node
-      - name: Run coverage tests
-        run: yarn test:coverage
-      - name: Edit result file
-        run: tail -n +2 coverage/result-jest.txt | head -n -1 > result.txt
-      - name: Write coverages to summary
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const fs = require("fs").promises;
-            const jest = await fs.readFile("./result.txt").then((b) => b.toString());
-            const output = `\n${jest}`;
-            await core.summary
-              .addHeading('Jest Coverages')
-              .addRaw(output)
-              .write();
+      - name: Run tests
+        run: yarn test
