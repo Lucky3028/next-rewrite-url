@@ -22,7 +22,7 @@
     "es:fix": "eslint --fix 'src/**/*.ts'",
     "format": "prettier --check --loglevel=warn 'src/**/*.ts'",
     "format:fix": "prettier --write --loglevel=warn 'src/**/*.ts'",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --passWithNoTests",
+    "test": "vitest run",
     "postinstall": "typesync",
     "prepare": "husky install"
   },
