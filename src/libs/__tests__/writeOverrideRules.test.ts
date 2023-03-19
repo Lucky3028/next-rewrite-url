@@ -5,16 +5,17 @@ import {
   writeOverrideRulesAsTs,
 } from '../writeOverrideRules.js';
 
+const WRITE_FILE_OPTION = { encoding: 'utf-8' };
+const OUTPUT_FILE_PATH = 'file/path';
+const OUTPUT_DATA = { data: 'is-here!' };
+const dataStr = JSON.stringify(OUTPUT_DATA);
+
 vi.spyOn(fs, 'writeFile');
 vi.mocked(fs.writeFile).mockResolvedValue(undefined);
 
 beforeEach(() => {
   vi.resetAllMocks();
 });
-
-const WRITE_FILE_OPTION = { encoding: 'utf-8' };
-const OUTPUT_FILE_PATH = 'file/path';
-const OUTPUT_DATA = { data: 'is-here!' };
 
 test('writeOverrideRulesAsJson should call write function', async () => {
   await writeOverrideRulesAsJson(OUTPUT_FILE_PATH, OUTPUT_DATA);
@@ -26,8 +27,6 @@ test('writeOverrideRulesAsJson should call write function', async () => {
     WRITE_FILE_OPTION,
   );
 });
-
-const dataStr = JSON.stringify(OUTPUT_DATA);
 
 test('writeOverrideRulesAsTs should call write function with default export', async () => {
   await writeOverrideRulesAsTs(OUTPUT_FILE_PATH, OUTPUT_DATA, false);
