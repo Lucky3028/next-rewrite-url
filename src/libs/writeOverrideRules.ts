@@ -18,4 +18,4 @@ export const writeOverrideRulesAsTs = async (
 export const writeOverrideRulesAsJson = async (
   filePath: string,
   data: unknown,
-) => writeFile(filePath, `${JSON.stringify(data)}`, options);
+) => writeFile(filePath, JSON.stringify(data), options);
