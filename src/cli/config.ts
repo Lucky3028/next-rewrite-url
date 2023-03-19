@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises';
+import fs from 'fs/promises';
 import { z } from 'zod';
 
 const outputFileMustBeNonEmptyErrMessage =
@@ -35,6 +35,6 @@ const configSchema = z.object({
 });
 
 export const readConfig = async (filePath: string) =>
-  readFile(filePath, { encoding: 'utf-8' }).then(async (contents) =>
-    configSchema.parse(JSON.parse(contents)),
-  );
+  fs
+    .readFile(filePath, { encoding: 'utf-8' })
+    .then(async (contents) => configSchema.parse(JSON.parse(contents)));
