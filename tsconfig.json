@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["esnext"],
+    "types": ["vitest/globals"],
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -29,7 +30,6 @@
   ],
   "exclude": [
     "node_modules/**/*.ts",
-    "vite.config.ts",
     "bin/next-override-url.mjs"
   ]
 }
