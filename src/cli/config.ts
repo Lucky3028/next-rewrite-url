@@ -35,4 +35,6 @@ const configSchema = z.object({
 });
 
 export const readConfig = async (filePath: string) =>
-  readFile(filePath, { encoding: 'utf-8' }).then(configSchema.parseAsync);
+  readFile(filePath, { encoding: 'utf-8' }).then(async (contents) =>
+    configSchema.parse(JSON.parse(contents)),
+  );
