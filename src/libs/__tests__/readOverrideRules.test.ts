@@ -6,8 +6,8 @@ import { readJsonAsOverrideRules } from '../readOverrideRules.js';
 vi.spyOn(fs, 'readFile');
 
 describe('readJsonAsOverrideRules', () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
+  beforeEach(() => {
+    vi.resetAllMocks();
   });
 
   it.each([
