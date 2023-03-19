@@ -13,7 +13,7 @@ const parseArgs = async (rawArgv: string[]) => {
   const slicedArgs = rawArgv.slice(2);
 
   return yargs(slicedArgs)
-    .usage('Usage: $0 [path] [options]')
+    .usage('Usage: $0 [options]')
     .option('config', {
       description: 'Path to a next-override-url config',
       alias: 'c',
