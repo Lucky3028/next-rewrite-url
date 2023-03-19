@@ -1,3 +1,6 @@
+// NOTE: TypeScript limitations do not allow type guessing of schemas using recursive types,
+//       so I implement both types and type schemas myself.
+
 export type OverrideRules = {
   [s: string]: string | OverrideRules;
 };

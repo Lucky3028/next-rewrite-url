@@ -1,4 +1,4 @@
-import { generateOverrideRulesRecursively, OverrideRules } from './index.js';
+import { generateOverrideRulesRecursively, OverrideRules } from '../index.js';
 
 describe('generateOverrideRulesRecursively', () => {
   it('should generate override rules recursively', () => {
