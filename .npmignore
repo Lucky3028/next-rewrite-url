@@ -7,7 +7,7 @@ src/
 .eslintrc
 .prettierrc
 CONTRIBUTING.md
-jest.config.cjs
+vite.config.ts
 tsconfig.json
 tsconfig.**.json
 yarn.lock
