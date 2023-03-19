@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["esnext"],
+    "types": ["vitest/globals"],
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -22,5 +23,13 @@
     "paths": {
       "@/*": ["src/*"]
     }
-  }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.mjs"
+  ],
+  "exclude": [
+    "node_modules/**/*.ts",
+    "bin/next-override-url.mjs"
+  ]
 }

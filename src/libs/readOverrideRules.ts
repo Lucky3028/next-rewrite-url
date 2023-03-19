@@ -7,10 +7,7 @@ const overrideRulesSchema: z.ZodSchema<OverrideRules> = z.lazy(() =>
   z.record(z.union([z.string(), overrideRulesSchema])),
 );
 
-const parseJsonAsOverrideRules = (data: string) =>
-  overrideRulesSchema.parse(JSON.parse(data));
-
 export const readJsonAsOverrideRules = async (filePath: string) =>
   fs
-    .readFile(filePath)
-    .then((buffer) => parseJsonAsOverrideRules(buffer.toString()));
+    .readFile(filePath, { encoding: 'utf-8' })
+    .then(async (contents) => overrideRulesSchema.parse(JSON.parse(contents)));
