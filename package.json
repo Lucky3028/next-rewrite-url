@@ -23,7 +23,6 @@
     "format": "prettier --check --loglevel=warn 'src/**/*.ts'",
     "format:fix": "prettier --write --loglevel=warn 'src/**/*.ts'",
     "test": "node --experimental-vm-modules node_modules/.bin/jest --passWithNoTests",
-    "test:coverage": "yarn test --ci --passWithNoTests",
     "postinstall": "typesync",
     "prepare": "husky install"
   },
