@@ -4,8 +4,8 @@
   "author": "Lucky3028",
   "license": "MIT",
   "type": "module",
-  "exports": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "exports": "./dist/libs/index.js",
+  "types": "./dist/libs/index.d.ts",
   "bin": {
     "next-override-url": "./bin/next-override-url.mjs"
   },
