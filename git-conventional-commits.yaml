@@ -1,0 +1,35 @@
+convention:
+  commitTypes:
+    - feat
+    - fix
+    - refactor
+    - style
+    - test
+    - docs
+    - perf
+    - chore
+    - ci
+    - merge
+  commitScopes: []
+  releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
+changelog:
+  commitTypes:
+    - feat
+    - fix
+    - refactor
+    - docs
+    - chore
+  includeInvalidCommits: true
+  commitScopes: []
+  commitIgnoreRegexPattern: "^WIP "
+  headlines:
+    feat: Features
+    fix: Bug Fixes
+    refactor: Refactoring
+    docs: Document Updates
+    chore: Other changes
+    breakingChange: BREAKING CHANGES
+  commitUrl: https://github.com/Lucky3028/next-rewrite-url/commit/%commit%
+  commitRangeUrl: https://github.com/Lucky3028/next-rewrite-url/compare/%from%...%to%?diff=split
+  issueRegexPattern: "#[0-9]+"
+  issueUrl: https://github.com/Lucky3028/next-rewrite-url/issues/%issue%
