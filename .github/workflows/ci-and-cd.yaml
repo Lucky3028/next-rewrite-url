@@ -1,0 +1,50 @@
+name: CI and CD
+on:
+  push:
+    branches:
+      - deployment
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+jobs:
+  ci:
+    name: CI
+    uses: ./.github/workflows/ci.yaml
+  deploy:
+    name: Deploy artifacts to GitHub Packages
+    runs-on: ubuntu-latest
+    needs:
+      - ci
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js with Volta
+        uses: ./.github/actions/setup-node
+      - name: Output new version
+        id: ver
+        run: |
+          NEW_VER=$(npx git-conventional-commits version)
+          echo "NEW_VER=$NEW_VER" >> $GITHUB_OUTPUT
+      - name: Bump and push changes
+        run: |
+          yarn version --new-version $NEW_VER
+          git add package.json
+          git commit -m "chore: bump ver to v$NEW_VER"
+          git push origin deployment
+          git push origin v$NEW_VER
+        env:
+          NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
+      - name: Build
+        run: yarn build
+      - name: publish
+        run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Output CHANGELOG
+        run: git-conventional-commits changelog --release v$NEW_VER --file 'CHANGELOG.md'
+        env:
+          NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: CHANGELOG.md
+          tag_name: v${{ steps.ver.outputs.NEW_VER }}
