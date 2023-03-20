@@ -1,0 +1,10 @@
+name: Create a PR to deploy
+on:
+  workflow_dispatch:
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create PR
+        run: gh pr create --base deployment --head main -t Deploy -f
