@@ -1,4 +1,4 @@
 dist/
 
 vite.config.ts
-bin/next-override-url.mjs
+bin/next-rewrite-url.mjs
