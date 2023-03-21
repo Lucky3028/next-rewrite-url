@@ -7,8 +7,10 @@ const rewriteRulesSchema: z.ZodSchema<RewriteRules> = z.lazy(() =>
   z.record(z.union([z.string(), rewriteRulesSchema])),
 );
 
-export const parseStringAsRewriteRules = async (data: string) =>
-  rewriteRulesSchema.parseAsync(JSON.parse(data));
+export const parseAsRewriteRules = async (data: unknown) =>
+  rewriteRulesSchema.parseAsync(data);
 
 export const readJsonAsRewriteRules = async (filePath: string) =>
-  fs.readFile(filePath, { encoding: 'utf-8' }).then(parseStringAsRewriteRules);
+  fs
+    .readFile(filePath, { encoding: 'utf-8' })
+    .then((contents) => parseAsRewriteRules(JSON.parse(contents)));
