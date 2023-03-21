@@ -30,6 +30,6 @@
   ],
   "exclude": [
     "node_modules/**/*.ts",
-    "bin/next-override-url.mjs"
+    "bin/next-rewrite-url.mjs"
   ]
 }
