@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 import { RewriteRules } from './index.js';
 
-const rewriteRulesSchema: z.ZodSchema<RewriteRules> = z.lazy(() =>
+export const rewriteRulesSchema: z.ZodSchema<RewriteRules> = z.lazy(() =>
   z.record(z.union([z.string(), rewriteRulesSchema])),
 );
 
