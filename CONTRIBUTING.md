@@ -2,11 +2,13 @@
 
 ## How to start development
 
+Before following the instructions below, see [them](./README.md#prepare).
+
 1. `git clone https://github.com/Lucky3028/next-rewrite-url.git`  
 Clone the repository.
 1. `yarn prepare`  
 Setup [husky](https://github.com/typicode/husky). This will run ESLint and Prettier every time you `git commit`.
-1. `yarn start`  
+1. `yarn dev`  
 Run the CLI.
 
 ## About commit messages
