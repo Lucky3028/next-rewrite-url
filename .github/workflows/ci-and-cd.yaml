@@ -63,7 +63,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body_path: CHANGELOG.md
-          tag_name: v${{ steps.ver.outputs.NEW_VER }}
+          tag_name: ${{ steps.ver.outputs.NEW_VER }}
       - name: Create and merge PR to push bump
         run: |
           gh pr create --base main --head deployment -t "Deploy($NEW_VER)" -b ""
