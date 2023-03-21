@@ -7,7 +7,7 @@ import { readConfig } from '../config.js';
 vi.spyOn(fs, 'readFile');
 
 const filledConfig = {
-  input: '/input/file/path',
+  rewrites: {},
   outputs: {
     ts: {
       enabled: true,
@@ -33,7 +33,6 @@ describe('readConfig', () => {
   });
 
   it.each([
-    ['no input field', { input: undefined }],
     ['no outputs field', { outputs: undefined }],
     [
       'no ts field in outputs',
@@ -43,7 +42,6 @@ describe('readConfig', () => {
       'no json field in outputs',
       { outputs: { ...filledConfig.outputs, json: undefined } },
     ],
-    ['empty string input', { input: '' }],
   ])(`should throw an error: %s`, async (_, config) => {
     vi.mocked(fs.readFile).mockResolvedValue(
       JSON.stringify({ ...filledConfig, ...config }),
