@@ -30,7 +30,7 @@
     "format": "prettier --check --loglevel=warn 'src/**/*.ts'",
     "format:fix": "prettier --write --loglevel=warn 'src/**/*.ts'",
     "test": "vitest run",
-    "postinstall": "typesync",
+    "postinstall": "typesync || :",
     "prepare": "husky install"
   },
   "lint-staged": {
