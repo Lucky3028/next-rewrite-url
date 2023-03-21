@@ -36,9 +36,8 @@ jobs:
         uses: Lucky3028/git-as-gha@v1.0.1
       - name: Bump and push changes
         run: |
+          yarn config set version-git-message "chore: bump ver to v%s"
           yarn version --new-version $NEW_VER_NUM
-          git add package.json
-          git commit -m "chore: bump ver to $NEW_VER"
           git push origin deployment
           git push origin "$NEW_VER"
         env:
