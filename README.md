@@ -36,6 +36,10 @@ EOD
 
 4. `yarn next-rewrite-url`
 
+#### Options
+
+- `-c <path>`: The path to a config file. Default is `./next-rewrite-url.config.json`
+
 ### GitHub Actions
 
 4. Add the PAT to secrets (e.g. `NODE_AUTH_TOKEN`) on GitHub
