@@ -31,7 +31,7 @@ test('writeRewriteRulesAsJson should call write function', async () => {
 test('writeRewriteRulesAsTs should call write function with default export', async () => {
   await writeRewriteRulesAsTs(OUTPUT_FILE_PATH, OUTPUT_DATA, false);
 
-  const expectedData = `const overrideRules = ${dataStr};\n\nexport default overrideRules;`;
+  const expectedData = `const rewriteRules = ${dataStr};\n\nexport default rewriteRules;`;
 
   expect(fs.writeFile).toHaveBeenNthCalledWith(
     1,
@@ -44,7 +44,7 @@ test('writeRewriteRulesAsTs should call write function with default export', asy
 test('writeRewriteRulesAsTs should call write function with named export', async () => {
   await writeRewriteRulesAsTs(OUTPUT_FILE_PATH, OUTPUT_DATA, true);
 
-  const expectedData = `export const overrideRules = ${dataStr};`;
+  const expectedData = `export const rewriteRules = ${dataStr};`;
 
   expect(fs.writeFile).toHaveBeenNthCalledWith(
     1,
