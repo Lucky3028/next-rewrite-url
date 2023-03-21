@@ -10,6 +10,8 @@ runs:
       with:
         node-version: ${{ steps.get-node-version.outputs.nodeVersion }}
         cache: yarn
+        registry-url: https://npm.pkg.github.com/
+        scope: '@Lucky3028'
     - name: Install dependencies
       run: yarn install
       shell: bash
