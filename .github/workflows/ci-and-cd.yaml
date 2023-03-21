@@ -28,10 +28,12 @@ jobs:
         run: git rebase origin/main
       - name: Setup Node.js with Volta
         uses: ./.github/actions/setup-node
+      - name: Install git-conventional-commits
+        run: npm install -g git-conventional-commits
       - name: Output new version
         id: ver
         run: |
-          NEW_VER=$(npx git-conventional-commits version)
+          NEW_VER=$(git-conventional-commits version)
           echo "New ver: v$NEW_VER"
           echo "NEW_VER_NUM=$NEW_VER" >> $GITHUB_OUTPUT
           echo "NEW_VER=v$NEW_VER" >> $GITHUB_OUTPUT
