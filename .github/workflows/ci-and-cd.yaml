@@ -33,12 +33,6 @@ jobs:
           echo "NEW_VER=v$NEW_VER" >> $GITHUB_OUTPUT
       - name: Git as GitHub Actions Bot
         uses: Lucky3028/git-as-gha@v1.0.1
-      - name: Fails if deployment branch exists
-        run: |
-          git fetch origin $DEPLOY_BRANCH
-          if [ $? -eq 0 ]; then
-            exit 1
-          fi
       - name: Bump and push changes
         run: |
           git switch -c "$DEPLOY_BRANCH"
