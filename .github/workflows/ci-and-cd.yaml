@@ -60,10 +60,10 @@ jobs:
         env:
           NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
       - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          body_path: CHANGELOG.md
-          tag_name: ${{ steps.ver.outputs.NEW_VER }}
+        run: gh release create "$NEW_VER" --title "$NEW_VER" -F CHANGELOG.md --verify-tag
+        env:
+          NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create and merge PR to push bump
         run: |
           gh pr create --base main --head deployment -t "Deploy($NEW_VER)" -b ""
