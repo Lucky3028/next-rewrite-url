@@ -21,7 +21,7 @@ jobs:
           ref: deployment
           fetch-depth: '0'
       - name: Rebase
-        run: git rebase main
+        run: git rebase origin/main
       - name: Setup Node.js with Volta
         uses: ./.github/actions/setup-node
       - name: Output new version
