@@ -1,8 +1,8 @@
-import { generateOverrideRulesRecursively, OverrideRules } from '../index.js';
+import { generateRewriteRulesRecursively, RewriteRules } from '../index.js';
 
-describe('generateOverrideRulesRecursively', () => {
-  it('should generate override rules recursively', () => {
-    const overrides: OverrideRules = {
+describe('generateRewriteRulesRecursively', () => {
+  it('should generate rewrite rules recursively', () => {
+    const rewrites: RewriteRules = {
       a: {
         b: 'value1',
         c: {
@@ -22,12 +22,12 @@ describe('generateOverrideRulesRecursively', () => {
       { g: 'value4' },
     ];
 
-    expect(generateOverrideRulesRecursively(overrides)).toEqual(expected);
+    expect(generateRewriteRulesRecursively(rewrites)).toEqual(expected);
   });
 
   it('should generate them with suffix', () => {
     const SUFFIX = 'api';
-    const overrides: OverrideRules = {
+    const rewrites: RewriteRules = {
       a: 'value1',
       b: {
         c: 'value2',
@@ -38,8 +38,6 @@ describe('generateOverrideRulesRecursively', () => {
       { [`${SUFFIX}/b/c`]: 'value2' },
     ];
 
-    expect(generateOverrideRulesRecursively(overrides, SUFFIX)).toEqual(
-      expected,
-    );
+    expect(generateRewriteRulesRecursively(rewrites, SUFFIX)).toEqual(expected);
   });
 });

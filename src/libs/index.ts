@@ -1,12 +1,12 @@
 // NOTE: TypeScript limitations do not allow type guessing of schemas using recursive types,
 //       so I implement both types and type schemas myself.
 
-export type OverrideRules = {
-  [s: string]: string | OverrideRules;
+export type RewriteRules = {
+  [s: string]: string | RewriteRules;
 };
 
 const generateRules = (
-  value: string | OverrideRules,
+  value: string | RewriteRules,
   accu: string,
   suffix: string,
 ): { [s: string]: string }[] => {
@@ -23,7 +23,7 @@ const generateRules = (
   });
 };
 
-export const generateOverrideRulesRecursively = (
-  overrides: OverrideRules,
+export const generateRewriteRulesRecursively = (
+  rewrites: RewriteRules,
   suffix = '',
-) => generateRules(overrides, suffix, '');
+) => generateRules(rewrites, suffix, '');

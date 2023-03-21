@@ -8,7 +8,7 @@ const generateOutputFileSchema = (extension: string) =>
   z
     .string()
     .nonempty(outputFileMustBeNonEmptyErrMessage)
-    .default(`./overrides.${extension}`)
+    .default(`./rewrites.${extension}`)
     .refine(
       (s) => s.toLowerCase().endsWith(`.${extension}`),
       `Output file path must end with ".${extension}"`,
