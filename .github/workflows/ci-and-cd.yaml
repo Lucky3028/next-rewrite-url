@@ -28,17 +28,20 @@ jobs:
         id: ver
         run: |
           NEW_VER=$(npx git-conventional-commits version)
-          echo "NEW_VER=$NEW_VER" >> $GITHUB_OUTPUT
+          echo "New ver: v$NEW_VER"
+          echo "NEW_VER_NUM=$NEW_VER" >> $GITHUB_OUTPUT
+          echo "NEW_VER=v$NEW_VER" >> $GITHUB_OUTPUT
       - name: Git as GitHub Actions Bot
         uses: Lucky3028/git-as-gha@v1.0.1
       - name: Bump and push changes
         run: |
-          yarn version --new-version $NEW_VER
+          yarn version --new-version $NEW_VER_NUM
           git add package.json
-          git commit -m "chore: bump ver to v$NEW_VER"
+          git commit -m "chore: bump ver to $NEW_VER"
           git push origin deployment
-          git push origin v$NEW_VER
+          git push origin "$NEW_VER"
         env:
+          NEW_VER_NUM: ${{ steps.ver.outputs.NEW_VER_NUM }}
           NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
       - name: Build
         run: yarn build
@@ -47,7 +50,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Output CHANGELOG
-        run: git-conventional-commits changelog --release v$NEW_VER --file 'CHANGELOG.md'
+        run: git-conventional-commits changelog --release $NEW_VER --file 'CHANGELOG.md'
         env:
           NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
       - name: Release
@@ -57,5 +60,7 @@ jobs:
           tag_name: v${{ steps.ver.outputs.NEW_VER }}
       - name: Create and merge PR to push bump
         run: |
-          gh pr create --base main --head deployment -t Deploy(v${{ steps.ver.outputs.NEW_VER }}) -b ''
+          gh pr create --base main --head deployment -t "Deploy($NEW_VER)" -b ""
           gh pr merge --auto -m
+        env:
+          NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
