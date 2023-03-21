@@ -22,7 +22,7 @@ const configBaseSchema = z.object({
 const exportTypeSchema = z.enum(['default', 'named']);
 
 const configSchema = z.object({
-  input: z.string().nonempty(outputFileMustBeNonEmptyErrMessage),
+  rewrites: z.unknown(),
   outputs: z.object({
     ts: configBaseSchema.extend({
       output: generateOutputFileSchema('ts'),

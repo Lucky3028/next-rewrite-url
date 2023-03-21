@@ -2,7 +2,7 @@ import yargs from 'yargs';
 import { ZodError } from 'zod';
 
 import { generateRewriteRulesRecursively } from '@/libs/index.js';
-import { readJsonAsRewriteRules } from '@/libs/readRewriteRules.js';
+import { parseAsRewriteRules } from '@/libs/readRewriteRules.js';
 import {
   writeRewriteRulesAsJson,
   writeRewriteRulesAsTs,
@@ -56,16 +56,14 @@ export const cli = async (rawArgv: string[]) => {
     },
   );
 
-  const rules = await readJsonAsRewriteRules(config.input)
+  const rules = await parseAsRewriteRules(config.rewrites)
     .then(generateRewriteRulesRecursively)
     .catch((err: Error) => {
       if (err instanceof ZodError) {
-        logger.error(
-          `An error has occurred while parsing ${config.input} as rewrite rules:`,
-        );
+        logger.error(`An error has occurred while parsing values in config:`);
         logger.error(err.errors);
       } else {
-        logger.error(`An error has occurred while reading ${config.input}:`);
+        logger.error(`An error has occurred while reading rewrites:`);
         logger.error(err.message);
       }
 
