@@ -3,13 +3,9 @@ convention:
     - feat
     - fix
     - refactor
-    - style
-    - test
     - docs
     - perf
     - chore
-    - ci
-    - merge
   commitScopes: []
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:
@@ -18,8 +14,9 @@ changelog:
     - fix
     - refactor
     - docs
+    - perf
     - chore
-  includeInvalidCommits: true
+  includeInvalidCommits: false
   commitScopes: []
   commitIgnoreRegexPattern: "^WIP "
   headlines:

@@ -1,12 +1,6 @@
 name: CI and CD
 on:
-  push:
-    branches:
-      - deployment
   workflow_dispatch:
-concurrency:
-  group: deploy
-  cancel-in-progress: true
 jobs:
   ci:
     name: CI
@@ -20,13 +14,12 @@ jobs:
       pull-requests: write
     needs:
       - ci
+    env:
+      DEPLOY_BRANCH: deployment
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: deployment
           fetch-depth: '0'
-      - name: Rebase
-        run: git rebase origin/main
       - name: Setup Node.js with Volta
         uses: ./.github/actions/setup-node
       - name: Install git-conventional-commits
@@ -40,11 +33,18 @@ jobs:
           echo "NEW_VER=v$NEW_VER" >> $GITHUB_OUTPUT
       - name: Git as GitHub Actions Bot
         uses: Lucky3028/git-as-gha@v1.0.1
+      - name: Fails if deployment branch exists
+        run: |
+          git fetch origin $DEPLOY_BRANCH
+          if [ $? -eq 0 ]; then
+            exit 1
+          fi
       - name: Bump and push changes
         run: |
+          git switch -c "$DEPLOY_BRANCH"
           yarn config set version-git-message "chore: bump ver to v%s"
           yarn version --new-version $NEW_VER_NUM
-          git push origin deployment
+          git push origin "$DEPLOY_BRANCH"
           git push origin "$NEW_VER"
         env:
           NEW_VER_NUM: ${{ steps.ver.outputs.NEW_VER_NUM }}
@@ -66,7 +66,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create and merge PR to push bump
         run: |
-          gh pr create --base main --head deployment -t "Deploy($NEW_VER)" -b ""
+          gh pr create --base main --head "$DEPLOY_BRANCH" -t "Deploy $NEW_VER" -b ""
           gh pr merge --admin -m
         env:
           NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
