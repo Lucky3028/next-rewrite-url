@@ -70,3 +70,4 @@ jobs:
           gh pr merge --auto -m
         env:
           NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
