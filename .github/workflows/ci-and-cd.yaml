@@ -67,7 +67,7 @@ jobs:
       - name: Create and merge PR to push bump
         run: |
           gh pr create --base main --head deployment -t "Deploy($NEW_VER)" -b ""
-          gh pr merge --auto -m
+          gh pr merge --admin -m
         env:
           NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
