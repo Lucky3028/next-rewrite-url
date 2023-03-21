@@ -1,9 +1,9 @@
 import fs from 'fs/promises';
 
 import {
-  writeOverrideRulesAsJson,
-  writeOverrideRulesAsTs,
-} from '../writeOverrideRules.js';
+  writeRewriteRulesAsJson,
+  writeRewriteRulesAsTs,
+} from '../writeRewriteRules.js';
 
 const WRITE_FILE_OPTION = { encoding: 'utf-8' };
 const OUTPUT_FILE_PATH = 'file/path';
@@ -17,8 +17,8 @@ beforeEach(() => {
   vi.resetAllMocks();
 });
 
-test('writeOverrideRulesAsJson should call write function', async () => {
-  await writeOverrideRulesAsJson(OUTPUT_FILE_PATH, OUTPUT_DATA);
+test('writeRewriteRulesAsJson should call write function', async () => {
+  await writeRewriteRulesAsJson(OUTPUT_FILE_PATH, OUTPUT_DATA);
 
   expect(fs.writeFile).toHaveBeenNthCalledWith(
     1,
@@ -28,10 +28,10 @@ test('writeOverrideRulesAsJson should call write function', async () => {
   );
 });
 
-test('writeOverrideRulesAsTs should call write function with default export', async () => {
-  await writeOverrideRulesAsTs(OUTPUT_FILE_PATH, OUTPUT_DATA, false);
+test('writeRewriteRulesAsTs should call write function with default export', async () => {
+  await writeRewriteRulesAsTs(OUTPUT_FILE_PATH, OUTPUT_DATA, false);
 
-  const expectedData = `const overrideRules = ${dataStr};\n\nexport default overrideRules;`;
+  const expectedData = `const rewriteRules = ${dataStr};\n\nexport default rewriteRules;`;
 
   expect(fs.writeFile).toHaveBeenNthCalledWith(
     1,
@@ -41,10 +41,10 @@ test('writeOverrideRulesAsTs should call write function with default export', as
   );
 });
 
-test('writeOverrideRulesAsTs should call write function with named export', async () => {
-  await writeOverrideRulesAsTs(OUTPUT_FILE_PATH, OUTPUT_DATA, true);
+test('writeRewriteRulesAsTs should call write function with named export', async () => {
+  await writeRewriteRulesAsTs(OUTPUT_FILE_PATH, OUTPUT_DATA, true);
 
-  const expectedData = `export const overrideRules = ${dataStr};`;
+  const expectedData = `export const rewriteRules = ${dataStr};`;
 
   expect(fs.writeFile).toHaveBeenNthCalledWith(
     1,

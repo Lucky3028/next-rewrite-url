@@ -1,12 +1,12 @@
 import yargs from 'yargs';
 import { ZodError } from 'zod';
 
-import { generateOverrideRulesRecursively } from '@/libs/index.js';
-import { readJsonAsOverrideRules } from '@/libs/readOverrideRules.js';
+import { generateRewriteRulesRecursively } from '@/libs/index.js';
+import { readJsonAsRewriteRules } from '@/libs/readRewriteRules.js';
 import {
-  writeOverrideRulesAsJson,
-  writeOverrideRulesAsTs,
-} from '@/libs/writeOverrideRules.js';
+  writeRewriteRulesAsJson,
+  writeRewriteRulesAsTs,
+} from '@/libs/writeRewriteRules.js';
 
 import { readConfig } from './config.js';
 import { logger } from './logger.js';
@@ -17,7 +17,7 @@ const parseArgs = async (rawArgv: string[]) => {
   return yargs(slicedArgs)
     .usage('Usage: $0 [options]')
     .option('config', {
-      description: 'Path to a next-override-url config',
+      description: 'Path to a config',
       alias: 'c',
       type: 'string',
     })
@@ -33,14 +33,14 @@ const parseArgs = async (rawArgv: string[]) => {
     .parseAsync();
 };
 
-const DEFAULT_CONFIG_PATH = 'next-override-url.config.json';
+const DEFAULT_CONFIG_PATH = 'next-rewrite-url.config.json';
 const WRITE_FILE_ERR = 'An error has occurred while writing a file';
 
 export const cli = async (rawArgv: string[]) => {
   const { config: configPath } = await parseArgs(rawArgv);
   if (!configPath) {
     logger.warn(
-      `The path to config file is not provided, so use "${DEFAULT_CONFIG_PATH}" as it.`,
+      `The path to a config file is not provided, so "${DEFAULT_CONFIG_PATH}" is used as it.`,
     );
     logger.warn('To specify the path, run with "-c" option.');
   } else if (!configPath?.toLowerCase().endsWith('.json')) {
@@ -56,12 +56,12 @@ export const cli = async (rawArgv: string[]) => {
     },
   );
 
-  const rules = await readJsonAsOverrideRules(config.input)
-    .then(generateOverrideRulesRecursively)
+  const rules = await readJsonAsRewriteRules(config.input)
+    .then(generateRewriteRulesRecursively)
     .catch((err: Error) => {
       if (err instanceof ZodError) {
         logger.error(
-          `An error has occurred while parsing ${config.input} as override rules:`,
+          `An error has occurred while parsing ${config.input} as rewrite rules:`,
         );
         logger.error(err.errors);
       } else {
@@ -72,14 +72,14 @@ export const cli = async (rawArgv: string[]) => {
       process.exit(1);
     });
 
-  await writeOverrideRulesAsJson(config.outputs.json.output, rules).catch(
+  await writeRewriteRulesAsJson(config.outputs.json.output, rules).catch(
     (err: Error) => {
       logger.error(`${WRITE_FILE_ERR} to ${config.outputs.json.output}:`);
       logger.error(err.message);
       process.exit(1);
     },
   );
-  await writeOverrideRulesAsTs(
+  await writeRewriteRulesAsTs(
     config.outputs.ts.output,
     rules,
     config.outputs.ts.exportType === 'named',

@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "run-s build \"start {@}\" --",
-    "start": "./bin/next-override-url.mjs",
+    "start": "./bin/next-rewrite-url.mjs",
     "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "lint": "run-s es format",
     "lint:fix": "run-s es:fix format:fix",
