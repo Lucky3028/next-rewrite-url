@@ -13,3 +13,4 @@ tsconfig.**.json
 yarn.lock
 dist/tsconfig.build.tsbuildinfo
 renovate.json
+git-conventional-commits.yaml
