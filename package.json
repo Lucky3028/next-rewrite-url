@@ -7,7 +7,7 @@
   "exports": "./dist/libs/index.js",
   "types": "./dist/libs/index.d.ts",
   "bin": {
-    "next-override-url": "./bin/next-override-url.mjs"
+    "next-rewrite-url": "./bin/next-rewrite-url.mjs"
   },
   "engines": {
     "node": ">=14.16"
