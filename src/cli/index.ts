@@ -70,22 +70,36 @@ export const cli = async (rawArgv: string[]) => {
       process.exit(1);
     });
 
-  await writeRewriteRulesAsJson(config.outputs.json.output, rules).catch(
-    (err: Error) => {
-      logger.error(`${WRITE_FILE_ERR} to ${config.outputs.json.output}:`);
-      logger.error(err.message);
-      process.exit(1);
-    },
-  );
-  await writeRewriteRulesAsTs(
-    config.outputs.ts.output,
-    rules,
-    config.outputs.ts.exportType === 'named',
-  ).catch((err: Error) => {
-    logger.error(`${WRITE_FILE_ERR} to ${config.outputs.ts.output}:`);
-    logger.error(err.message);
-    process.exit(1);
-  });
+  if (config.outputs.json.enabled) {
+    const outputPath = config.outputs.json.output;
+
+    await writeRewriteRulesAsJson(outputPath, rules)
+      .then(() => logger.info(`Json output success!: ${outputPath}`))
+      .catch((err: Error) => {
+        logger.error(`${WRITE_FILE_ERR} to ${outputPath}:`);
+        logger.error(err.message);
+        process.exit(1);
+      });
+  } else {
+    logger.info('Json output skipped.');
+  }
+  if (config.outputs.ts.enabled) {
+    const outputPath = config.outputs.ts.output;
+
+    await writeRewriteRulesAsTs(
+      outputPath,
+      rules,
+      config.outputs.ts.exportType === 'named',
+    )
+      .then(() => logger.info(`TypeScript output success!: ${outputPath}`))
+      .catch((err: Error) => {
+        logger.error(`${WRITE_FILE_ERR} to ${outputPath}:`);
+        logger.error(err.message);
+        process.exit(1);
+      });
+  } else {
+    logger.info('TypeScript output skipped.');
+  }
 
   logger.info('Done!');
 };
