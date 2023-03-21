@@ -1,11 +1,6 @@
 name: CI and CD
 on:
-  push:
-    branches:
-      - main
-concurrency:
-  group: deploy
-  cancel-in-progress: true
+  workflow_dispatch:
 jobs:
   ci:
     name: CI
