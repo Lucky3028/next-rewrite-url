@@ -58,10 +58,8 @@ jobs:
         env:
           NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create and merge PR to push bump
-        run: |
-          gh pr create --base main --head "$DEPLOY_BRANCH" -t "Deploy $NEW_VER" -b ""
-          gh pr merge --admin -m
+      - name: Create PR to push bump
+        run: gh pr create --base main --head "$DEPLOY_BRANCH" -t "Deploy $NEW_VER" -b ""
         env:
           NEW_VER: ${{ steps.ver.outputs.NEW_VER }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
