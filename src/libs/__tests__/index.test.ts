@@ -17,10 +17,19 @@ describe('generateRewriteRules', () => {
     };
 
     const expected = {
-      '/a/b': 'value1',
-      '/a/c/d': 'value2',
-      '/a/c/e/f': 'value3',
-      '/g': 'value4',
+      '/a/b': {
+        source: '/a/b',
+        destination: 'value1',
+      },
+      '/a/c/d': {
+        source: '/a/c/d',
+        destination: 'value2',
+      },
+      '/a/c/e/f': {
+        source: '/a/c/e/f',
+        destination: 'value3',
+      },
+      '/g': { source: '/g', destination: 'value4' },
     };
 
     expect(generateRewriteRules(rewrites)).toEqual(expected);
@@ -35,8 +44,8 @@ describe('generateRewriteRules', () => {
       },
     };
     const expected = {
-      [`/${SUFFIX}/a`]: 'value1',
-      [`/${SUFFIX}/b/c`]: 'value2',
+      [`/${SUFFIX}/a`]: { source: `/${SUFFIX}/a`, destination: 'value1' },
+      [`/${SUFFIX}/b/c`]: { source: `/${SUFFIX}/b/c`, destination: 'value2' },
     };
 
     expect(generateRewriteRules(rewrites, SUFFIX)).toEqual(expected);

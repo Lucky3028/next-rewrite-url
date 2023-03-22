@@ -1,7 +1,10 @@
 import { RewriteRulesInput } from './readRewriteRulesInput.js';
 
 export type RewriteRules = {
-  [s: string]: string;
+  [s: string]: {
+    source: string;
+    destination: string;
+  };
 };
 
 const flattenRewriteRules = (
@@ -26,7 +29,10 @@ export const generateRewriteRules = (
   rewrites: RewriteRulesInput,
   suffix = '',
 ): RewriteRules =>
-  flattenRewriteRules(rewrites, suffix, '').reduce((accu, value) => ({
-    ...accu,
-    ...value,
-  }));
+  flattenRewriteRules(rewrites, suffix, '')
+    .flatMap((v) =>
+      Object.entries(v).map(([source, destination]) => ({
+        [source]: { source, destination },
+      })),
+    )
+    .reduce((accu, value) => ({ ...accu, ...value }));
