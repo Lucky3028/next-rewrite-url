@@ -16,10 +16,10 @@ describe('generateRewriteRulesRecursively', () => {
     };
 
     const expected = [
-      { 'a/b': 'value1' },
-      { 'a/c/d': 'value2' },
-      { 'a/c/e/f': 'value3' },
-      { g: 'value4' },
+      { '/a/b': 'value1' },
+      { '/a/c/d': 'value2' },
+      { '/a/c/e/f': 'value3' },
+      { '/g': 'value4' },
     ];
 
     expect(generateRewriteRulesRecursively(rewrites)).toEqual(expected);
@@ -34,8 +34,8 @@ describe('generateRewriteRulesRecursively', () => {
       },
     };
     const expected = [
-      { [`${SUFFIX}/a`]: 'value1' },
-      { [`${SUFFIX}/b/c`]: 'value2' },
+      { [`/${SUFFIX}/a`]: 'value1' },
+      { [`/${SUFFIX}/b/c`]: 'value2' },
     ];
 
     expect(generateRewriteRulesRecursively(rewrites, SUFFIX)).toEqual(expected);
