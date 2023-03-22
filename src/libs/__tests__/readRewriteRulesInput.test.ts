@@ -1,11 +1,11 @@
 import fs from 'fs/promises';
 import { ZodError } from 'zod';
 
-import { readJsonAsRewriteRules } from '../readRewriteRules.js';
+import { readRewriteRulesInputFromFile } from '../readRewriteRulesInput.js';
 
 vi.spyOn(fs, 'readFile');
 
-describe('readJsonAsRewriteRules', () => {
+describe('readRewriteRulesInputFromFile', () => {
   beforeEach(() => {
     vi.resetAllMocks();
   });
@@ -18,7 +18,9 @@ describe('readJsonAsRewriteRules', () => {
   ])('should return values with valid json: %s', async (_, object) => {
     vi.mocked(fs.readFile).mockResolvedValue(JSON.stringify(object));
 
-    await expect(readJsonAsRewriteRules('file')).resolves.toStrictEqual(object);
+    await expect(readRewriteRulesInputFromFile('file')).resolves.toStrictEqual(
+      object,
+    );
   });
 
   it.each([
@@ -27,7 +29,7 @@ describe('readJsonAsRewriteRules', () => {
   ])('should throw a ZodError with invalid json: %s', async (_, object) => {
     vi.mocked(fs.readFile).mockResolvedValue(JSON.stringify(object));
 
-    await expect(readJsonAsRewriteRules('file')).rejects.toBeInstanceOf(
+    await expect(readRewriteRulesInputFromFile('file')).rejects.toBeInstanceOf(
       ZodError,
     );
   });

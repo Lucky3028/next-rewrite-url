@@ -1,8 +1,8 @@
 import yargs from 'yargs';
 import { ZodError } from 'zod';
 
-import { generateRewriteRulesRecursively } from '@/libs/index.js';
-import { parseAsRewriteRules } from '@/libs/readRewriteRules.js';
+import { generateRewriteRules } from '@/libs/index.js';
+import { parseAsRewriteRulesInput } from '@/libs/readRewriteRulesInput.js';
 import {
   writeRewriteRulesAsJson,
   writeRewriteRulesAsTs,
@@ -56,8 +56,8 @@ export const cli = async (rawArgv: string[]) => {
     },
   );
 
-  const rules = await parseAsRewriteRules(config.rewrites)
-    .then(generateRewriteRulesRecursively)
+  const rules = await parseAsRewriteRulesInput(config.rewrites)
+    .then(generateRewriteRules)
     .catch((err: Error) => {
       if (err instanceof ZodError) {
         logger.error(`An error has occurred while parsing values in config:`);

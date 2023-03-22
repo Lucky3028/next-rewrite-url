@@ -1,12 +1,14 @@
-// NOTE: TypeScript limitations do not allow type guessing of schemas using recursive types,
-//       so I implement both types and type schemas myself.
+import { RewriteRulesInput } from './readRewriteRulesInput.js';
 
 export type RewriteRules = {
-  [s: string]: string | RewriteRules;
+  [s: string]: {
+    source: string;
+    destination: string;
+  };
 };
 
-const generateRules = (
-  value: string | RewriteRules,
+const flattenRewriteRules = (
+  value: string | RewriteRulesInput,
   accu: string,
   suffix: string,
 ): { [s: string]: string }[] => {
@@ -19,11 +21,18 @@ const generateRules = (
   return Object.entries(value).flatMap(([k, v]) => {
     const newAccu = accu ? `${accu}/${k}` : k;
 
-    return generateRules(v, newAccu, suffix);
+    return flattenRewriteRules(v, newAccu, suffix);
   });
 };
 
-export const generateRewriteRulesRecursively = (
-  rewrites: RewriteRules,
+export const generateRewriteRules = (
+  rewrites: RewriteRulesInput,
   suffix = '',
-) => generateRules(rewrites, suffix, '');
+): RewriteRules =>
+  flattenRewriteRules(rewrites, suffix, '')
+    .flatMap((v) =>
+      Object.entries(v).map(([source, destination]) => ({
+        [source]: { source, destination },
+      })),
+    )
+    .reduce((accu, value) => ({ ...accu, ...value }));

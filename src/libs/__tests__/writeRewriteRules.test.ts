@@ -7,7 +7,7 @@ import {
 
 const WRITE_FILE_OPTION = { encoding: 'utf-8' };
 const OUTPUT_FILE_PATH = 'file/path';
-const OUTPUT_DATA = { data: 'is-here!' };
+const OUTPUT_DATA = { data: { source: 'data', destination: 'is-here!' } };
 const dataStr = JSON.stringify(OUTPUT_DATA);
 
 vi.spyOn(fs, 'writeFile');
