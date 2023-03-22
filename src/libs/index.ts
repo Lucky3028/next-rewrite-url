@@ -13,7 +13,7 @@ const generateRules = (
   if (typeof value === 'string') {
     const key = suffix ? `${suffix}/${accu}` : accu;
 
-    return [{ [key]: value }];
+    return [{ [`/${key}`]: value }];
   }
 
   return Object.entries(value).flatMap(([k, v]) => {
