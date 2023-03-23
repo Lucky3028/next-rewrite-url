@@ -23,7 +23,7 @@ test('writeRewriteRulesAsJson should call write function', async () => {
   expect(fs.writeFile).toHaveBeenNthCalledWith(
     1,
     OUTPUT_FILE_PATH,
-    JSON.stringify(OUTPUT_DATA),
+    JSON.stringify(Object.values(OUTPUT_DATA)),
     WRITE_FILE_OPTION,
   );
 });
