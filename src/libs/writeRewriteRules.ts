@@ -20,4 +20,4 @@ export const writeRewriteRulesAsTs = async (
 export const writeRewriteRulesAsJson = async (
   filePath: string,
   rules: RewriteRules,
-) => fs.writeFile(filePath, JSON.stringify(rules), options);
+) => fs.writeFile(filePath, JSON.stringify(Object.values(rules)), options);
