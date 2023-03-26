@@ -1,11 +1,11 @@
 import { RewriteRulesInput } from './readRewriteRulesInput.js';
 
-export type RewriteRules = {
-  [s: string]: {
-    source: string;
-    destination: string;
-  };
+export type RewriteRuleItem = {
+  source: string;
+  destination: string;
 };
+
+export type RewriteRules = { [s: string]: RewriteRuleItem };
 
 const flattenRewriteRules = (
   value: string | RewriteRulesInput,
