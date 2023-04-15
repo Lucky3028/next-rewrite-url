@@ -1627,9 +1627,9 @@ grapheme-splitter@^1.0.4:
   integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
 
 happy-dom@^9.0.0:
-  version "9.1.9"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.1.9.tgz#d369f0086c67a8acdac8756cd3d4edf6054ac98d"
-  integrity sha512-OMbnoknA7iNNG/5fwt1JckCKc53QLLFo2ljzit1pCV9SC1TYwcQj0obq0QUTeqIf2p2skbFG69bo19YoSj/1DA==
+  version "9.6.1"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.6.1.tgz#347973bae32db16626211b2dc3807bfc8c1ea225"
+  integrity sha512-lbRsmw8toqKUCwMIZQtoTW/F3XGOovazC+sdTf+gire4ITx9mPUx2TrdCr/JbB1CF4QplCwdn3+p1/2O5slWDw==
   dependencies:
     css.escape "^1.5.1"
     he "^1.2.0"
@@ -3306,9 +3306,9 @@ vite-node@0.29.8:
     vite "^3.0.0 || ^4.0.0"
 
 vite-tsconfig-paths@^4.0.7:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/vite-tsconfig-paths/-/vite-tsconfig-paths-4.0.8.tgz#af5d3d074ae01c434713f7d81321ff3697af1b51"
-  integrity sha512-p04zH+Ey+NT78571x0pdX7nVRIJSlmKVvYryFglSWOK3Hc72eDL0+JJfbyQiugaIBApJkaEqbBQvqpsFZOSVGg==
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/vite-tsconfig-paths/-/vite-tsconfig-paths-4.2.0.tgz#bd2647d3eadafb65a10fc98a2ca565211f2eaf63"
+  integrity sha512-jGpus0eUy5qbbMVGiTxCL1iB9ZGN6Bd37VGLJU39kTDD6ZfULTTb1bcc5IeTWqWJKiWV5YihCaibeASPiGi8kw==
   dependencies:
     debug "^4.1.1"
     globrex "^0.1.2"
