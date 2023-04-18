@@ -1627,9 +1627,9 @@ grapheme-splitter@^1.0.4:
   integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
 
 happy-dom@^9.0.0:
-  version "9.6.1"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.6.1.tgz#347973bae32db16626211b2dc3807bfc8c1ea225"
-  integrity sha512-lbRsmw8toqKUCwMIZQtoTW/F3XGOovazC+sdTf+gire4ITx9mPUx2TrdCr/JbB1CF4QplCwdn3+p1/2O5slWDw==
+  version "9.8.1"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.8.1.tgz#6f4e7193a6b0e3c9cc4944c0d96d207d76f74c8a"
+  integrity sha512-V98qplc8eS01+vEX5OU0/SQ+GghxxlTt/StPoFQ7fCO5Kbv9BUV1C2lBD2bs4hG8FjHicT91jsu+9idr8goL2Q==
   dependencies:
     css.escape "^1.5.1"
     he "^1.2.0"
