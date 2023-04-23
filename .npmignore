@@ -1,6 +1,7 @@
 .github/
 .husky/
 src/
+.rollup.cache/
 
 .editorconfig
 .eslintignore
