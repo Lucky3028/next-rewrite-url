@@ -13,12 +13,6 @@
     "isolatedModules": true,
     "incremental": true,
     "noUncheckedIndexedAccess": true,
-    // tscでJSへのコンパイルをするための設定
-    "noEmit": false,
-    "declaration": true,
-    "declarationDir": "dist",
-    "outDir": "dist",
-    "sourceMap": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
@@ -30,6 +24,7 @@
   ],
   "exclude": [
     "node_modules/**/*.ts",
-    "bin/next-rewrite-url.mjs"
+    "bin/next-rewrite-url.mjs",
+    "vite.config.ts"
   ]
 }

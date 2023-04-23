@@ -2,3 +2,4 @@ dist/
 
 vite.config.ts
 bin/next-rewrite-url.mjs
+rollup.config.mjs

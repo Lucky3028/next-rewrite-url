@@ -4,13 +4,14 @@
   "author": "Lucky3028",
   "license": "MIT",
   "type": "module",
-  "exports": "./dist/libs/index.js",
-  "types": "./dist/libs/index.d.ts",
+  "exports": {
+    "import": "./dist/esm/index.mjs",
+    "require": "./dist/cjs/index.cjs",
+    "node": "./dist/cjs/index.cjs",
+    "default": "./dist/cjs/index.cjs"
+  },
   "bin": {
     "next-rewrite-url": "./bin/next-rewrite-url.mjs"
-  },
-  "engines": {
-    "node": ">=14.16"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,7 @@
   "scripts": {
     "dev": "run-s build \"start {@}\" --",
     "start": "./bin/next-rewrite-url.mjs",
-    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "build": "rollup -c",
     "lint": "run-s es format",
     "lint:fix": "run-s es:fix format:fix",
     "es": "eslint 'src/**/*.ts'",
@@ -38,42 +39,41 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "bin/*.mjs": [
+    "bin/next-rewrite-url.mjs": [
       "prettier --write"
     ]
-  },
-  "devDependencies": {
-    "@types/eslint": "^8.21.1",
-    "@types/node": "^18.15.1",
-    "@types/prettier": "^2.7.2",
-    "@types/yargs": "^17.0.22",
-    "@typescript-eslint/eslint-plugin": "latest",
-    "@typescript-eslint/parser": "latest",
-    "eslint": "^8.36.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-prettier": "^8.7.0",
-    "eslint-import-resolver-typescript": "^3.5.3",
-    "eslint-plugin-import": "^2.27.5",
-    "happy-dom": "^9.0.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^13.2.0",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.4",
-    "ts-node": "^10.9.1",
-    "tsc-alias": "^1.8.3",
-    "tslib": "^2.5.0",
-    "typescript": "^5.0.0",
-    "typesync": "^0.10.0",
-    "vite": "^4.2.0",
-    "vite-tsconfig-paths": "^4.0.7",
-    "vitest": "^0.30.0"
   },
   "dependencies": {
     "pino": "^8.11.0",
     "pino-pretty": "^10.0.0",
     "yargs": "^17.7.1",
     "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.0",
+    "@types/eslint": "^8.37.0",
+    "@types/lodash": "^4.14.194",
+    "@types/prettier": "^2.7.2",
+    "@types/yargs": "^17.0.24",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "eslint": "^8.38.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-import": "^2.27.5",
+    "happy-dom": "^9.6.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.7",
+    "rollup": "^3.20.2",
+    "typescript": "^5.0.4",
+    "typesync": "^0.10.0",
+    "vite": "^4.2.1",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.30.1"
   },
   "volta": {
     "node": "18.16.0",

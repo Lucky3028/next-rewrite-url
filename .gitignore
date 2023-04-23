@@ -2,3 +2,5 @@ node_modules/
 
 # Build output
 dist/
+.rollup.cache/
+tsconfig.tsbuildinfo
