@@ -12,6 +12,7 @@ vite.config.ts
 tsconfig.json
 tsconfig.**.json
 yarn.lock
-dist/tsconfig.build.tsbuildinfo
 renovate.json
 git-conventional-commits.yaml
+tsconfig.tsbuildinfo
+rollup.config.mjs
