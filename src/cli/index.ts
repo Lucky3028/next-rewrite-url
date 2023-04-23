@@ -1,12 +1,12 @@
 import yargs from 'yargs';
 import { ZodError } from 'zod';
 
-import { generateRewriteRules } from '@/libs/index.js';
-import { parseAsRewriteRulesInput } from '@/libs/readRewriteRulesInput.js';
+import { generateRewriteRules } from '@/lib/index.js';
+import { parseAsRewriteRulesInput } from '@/lib/readRewriteRulesInput.js';
 import {
   writeRewriteRulesAsJson,
   writeRewriteRulesAsTs,
-} from '@/libs/writeRewriteRules.js';
+} from '@/lib/writeRewriteRules.js';
 
 import { readConfig } from './config.js';
 import { logger } from './logger.js';
