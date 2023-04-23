@@ -3,7 +3,7 @@ import pluginTypescript from '@rollup/plugin-typescript';
 import pkg from './package.json' assert { type: 'json' };
 
 export default [
-  // ESモジュール用設定
+  // ESModule用設定
   {
     input: 'src/cli/index.ts',
     output: [
@@ -24,6 +24,7 @@ export default [
         declaration: true,
         declarationDir: 'dist/esm',
         rootDir: 'src',
+        exclude: ["**/__tests__", "**/*.test.ts"]
       }),
     ],
   },
@@ -48,6 +49,7 @@ export default [
         declaration: true,
         declarationDir: 'dist/cjs',
         rootDir: 'src',
+        exclude: ["**/__tests__", "**/*.test.ts"]
       }),
     ],
   },
