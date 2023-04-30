@@ -1601,9 +1601,9 @@ grapheme-splitter@^1.0.4:
   integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
 
 happy-dom@^9.6.1:
-  version "9.10.0"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.10.0.tgz#06c77f48235f4d9457c0c7b5a66027d9ec47542e"
-  integrity sha512-A2NGV4Z2goQEoFUed1jODPcG7WYHF04Ashv804qzIZU0I8kF5wQoJM6SVGC77nxZZAk7PypWzXKenfskgcpdMw==
+  version "9.10.1"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.10.1.tgz#fd76d9cec8b04791e01ddd2ba37b343150e682c1"
+  integrity sha512-4wEWL9jYxtjcvGJDACtcelTBD86Sv//Kwn3G/+zb0mrNF3sC/JC0lTznqLu4Vw4cNUfR4WLMjiC+jeAr8CxM2g==
   dependencies:
     css.escape "^1.5.1"
     he "^1.2.0"
@@ -2713,9 +2713,9 @@ rimraf@^3.0.2:
     glob "^7.1.3"
 
 rollup@^3.20.2, rollup@^3.21.0:
-  version "3.21.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.21.1.tgz#d56f32ee041383b60909e3d3195b54b69912dbb0"
-  integrity sha512-GpUgqWCw56OSiBKf7lcAITstYiBV1/EKaKYPl9r8HgAxc6/qYAVw1PaHWnvHWFziRaf4HsVCDLq/IGtBi1K/Zw==
+  version "3.21.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.21.2.tgz#c3a06bc8d235a0c0a8f1f7d9da73426f53706bdc"
+  integrity sha512-c4vC+JZ3bbF4Kqq2TtM7zSKtSyMybFOjqmomFax3xpfYaPZDZ4iz8NMIuBRMjnXOcKYozw7bC6vhJjiWD6JpzQ==
   optionalDependencies:
     fsevents "~2.3.2"
 
