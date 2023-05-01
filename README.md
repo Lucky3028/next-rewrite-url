@@ -78,7 +78,7 @@ Example:
       "enabled": true,
       "output": "/output/ts/file.ts",
       "exportType": "named",
-    }
+    },
     "json": {
       "enabled": true,
       "output": "/output/json/file.json",
