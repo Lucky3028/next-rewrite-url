@@ -1,6 +1,6 @@
 {
   "name": "@lucky3028/next-rewrite-url",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "author": "Lucky3028",
   "license": "MIT",
   "type": "module",
@@ -52,6 +52,8 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.0",
     "@types/eslint": "^8.37.0",
+    "@types/eslint-config-prettier": "^6.11.0",
+    "@types/lint-staged": "^13.2.0",
     "@types/lodash": "^4.14.194",
     "@types/prettier": "^2.7.2",
     "@types/yargs": "^17.0.24",
