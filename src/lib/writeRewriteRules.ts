@@ -5,7 +5,13 @@ import { RewriteRules } from './index.js';
 const options: Parameters<typeof fs.writeFile>['2'] = { encoding: 'utf-8' };
 
 const createFile = async (filePath: string, contents: string) => {
-  fs.writeFile(filePath, contents, options).catch(async (e: Error) => {
+  try {
+    await fs.writeFile(filePath, contents, options);
+  } catch (e: unknown) {
+    if (!(e instanceof Error)) {
+      return;
+    }
+
     if (e.name === 'ENOENT') {
       const dir = filePath.substring(0, filePath.lastIndexOf('/'));
       await fs
@@ -14,7 +20,7 @@ const createFile = async (filePath: string, contents: string) => {
     } else {
       throw e;
     }
-  });
+  }
 };
 
 export const writeRewriteRulesAsTs = async (
