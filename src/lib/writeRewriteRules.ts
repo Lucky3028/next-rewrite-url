@@ -5,14 +5,15 @@ import { RewriteRules } from './index.js';
 const options: Parameters<typeof fs.writeFile>['2'] = { encoding: 'utf-8' };
 
 const createFile = async (filePath: string, contents: string) => {
+  // await-catchで書くとテストが通らないので、仕方なくこれ
   try {
     await fs.writeFile(filePath, contents, options);
   } catch (e: unknown) {
     if (!(e instanceof Error)) {
-      return;
+      throw new Error('Unreachable code!');
     }
 
-    if (e.name === 'ENOENT') {
+    if (e.message.startsWith('ENOENT')) {
       const dir = filePath.substring(0, filePath.lastIndexOf('/'));
       await fs
         .mkdir(dir, { recursive: true })
