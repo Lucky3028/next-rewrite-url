@@ -9,7 +9,7 @@ const createFile = async (filePath: string, contents: string) => {
     await fs.writeFile(filePath, contents, options);
   } catch (e: unknown) {
     if (!(e instanceof Error)) {
-      return;
+      throw new Error('Unreachable code!');
     }
 
     if (e.message.startsWith('ENOENT')) {
