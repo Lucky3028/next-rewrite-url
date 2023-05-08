@@ -29,8 +29,11 @@ export const writeRewriteRulesAsTs = async (
   isNamedExport: boolean,
 ) => {
   const json = JSON.stringify(rules);
-  const namedExportContents = `export const rewriteRules = ${json};`;
-  const defaultExportContents = `const rewriteRules = ${json};\n\nexport default rewriteRules;`;
+
+  const typeExportContents =
+    'export type RewriteRuleKeys = keyof typeof rewriteRules;';
+  const namedExportContents = `export const rewriteRules = ${json};\n\n${typeExportContents}`;
+  const defaultExportContents = `const rewriteRules = ${json};\n\n${typeExportContents}\n\nexport default rewriteRules;`;
   const contents = isNamedExport ? namedExportContents : defaultExportContents;
 
   return createFile(filePath, contents);
