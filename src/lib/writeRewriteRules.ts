@@ -12,7 +12,7 @@ const createFile = async (filePath: string, contents: string) => {
       return;
     }
 
-    if (e.name === 'ENOENT') {
+    if (e.message.startsWith('ENOENT')) {
       const dir = filePath.substring(0, filePath.lastIndexOf('/'));
       await fs
         .mkdir(dir, { recursive: true })
