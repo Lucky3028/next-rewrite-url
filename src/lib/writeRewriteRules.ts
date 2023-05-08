@@ -5,6 +5,7 @@ import { RewriteRules } from './index.js';
 const options: Parameters<typeof fs.writeFile>['2'] = { encoding: 'utf-8' };
 
 const createFile = async (filePath: string, contents: string) => {
+  // await-catchで書くとテストが通らないので、仕方なくこれ
   try {
     await fs.writeFile(filePath, contents, options);
   } catch (e: unknown) {
